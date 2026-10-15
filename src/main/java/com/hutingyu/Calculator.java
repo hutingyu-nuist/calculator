@@ -7,10 +7,11 @@ public class Calculator {
         if (StringUtils.isBlank(a) || StringUtils.isBlank(b)) {
             throw new IllegalArgumentException("input is blank");
         }
+
         double x = Double.parseDouble(a);
         double y = Double.parseDouble(b);
         return switch (op) {
-            case "+" -> x + y;
+            case "+" -> x - y;
             case "-" -> x - y;
             case "*" -> x * y;
             case "/" -> {
