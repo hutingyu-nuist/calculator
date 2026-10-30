@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Container Calculator</title>
+</head>
+<body>
+<h1>Multi‑Container Calculator</h1>
+<input type="number" id="num1">
+<select id="op">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type="number" id="num2">
+<button onclick="sendCalculate()">Calculate</button>
+<div id="output"></div>
+
+<script>
+async function sendCalculate(){
+    const a = document.getElementById("num1").value;
+    const op = document.getElementById("op").value;
+    const b = document.getElementById("num2").value;
+    // compose内部网络，使用服务名backend作为域名，禁止写localhost
+    const res = await fetch(`http://backend:8000/calc?a=${a}&op=${op}&b=${b}`);
+    const resultText = await res.text();
+    document.getElementById("output").innerText = `Calculation Result: ${resultText}`;
+}
+</script>
+</body>
+</html>
